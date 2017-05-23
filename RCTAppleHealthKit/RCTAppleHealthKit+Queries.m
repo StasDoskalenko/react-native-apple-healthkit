@@ -113,14 +113,14 @@
 
 
 
-- (void)fetchSleepCategorySamplesForPredicate:(NSPredicate *)predicate
-                                   limit:(NSUInteger)lim
-                                   completion:(void (^)(NSArray *, NSError *))completion {
+- (void)fetchCategorySamplesOfType:(HKCategoryType *)categoryType
+                         predicate:(NSPredicate *)predicate
+                             limit:(NSUInteger)lim
+                        completion:(void (^)(NSArray *, NSError *))completion {
 
 
     NSSortDescriptor *timeSortDescriptor = [[NSSortDescriptor alloc] initWithKey:HKSampleSortIdentifierEndDate
                                                                        ascending:false];
-
 
     // declare the block
     void (^handlerBlock)(HKSampleQuery *query, NSArray *results, NSError *error);
@@ -149,26 +149,36 @@
                     NSString *startDateString = [RCTAppleHealthKit buildISO8601StringFromDate:sample.startDate];
                     NSString *endDateString = [RCTAppleHealthKit buildISO8601StringFromDate:sample.endDate];
 
-                    NSString *valueString;
+                    NSDictionary *elem;
+                    
+                    if ([categoryType identifier] == HKCategoryTypeIdentifierSleepAnalysis) {
+                        NSString *valueString;
+                        
+                        switch (val) {
+                          case HKCategoryValueSleepAnalysisInBed:
+                            valueString = @"INBED";
+                          break;
+                          case HKCategoryValueSleepAnalysisAsleep:
+                            valueString = @"ASLEEP";
+                          break;
+                         default:
+                            valueString = @"UNKNOWN";
+                         break;
+                      }
 
-                    switch (val) {
-                      case HKCategoryValueSleepAnalysisInBed:
-                        valueString = @"INBED";
-                      break;
-                      case HKCategoryValueSleepAnalysisAsleep:
-                        valueString = @"ASLEEP";
-                      break;
-                     default:
-                        valueString = @"UNKNOWN";
-                     break;
-                  }
-
-                    NSDictionary *elem = @{
-                            @"value" : valueString,
-                            @"startDate" : startDateString,
-                            @"endDate" : endDateString,
-                    };
-
+                        elem = @{
+                                @"value" : valueString,
+                                @"startDate" : startDateString,
+                                @"endDate" : endDateString,
+                        };
+                    }
+                    else {
+                        elem = @{
+                                 @"startDate" : startDateString,
+                                 @"endDate" : endDateString,
+                             };
+                    }
+                    
                     [data addObject:elem];
                 }
 
@@ -183,8 +193,8 @@
     //                                                  sortDescriptors:@[timeSortDescriptor]
     //                                                   resultsHandler:handlerBlock];
 
-    HKCategoryType *categoryType =
-    [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis];
+    //HKCategoryType *categoryType =
+    //[HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis];
 
     // HKCategorySample *categorySample =
     // [HKCategorySample categorySampleWithType:categoryType
