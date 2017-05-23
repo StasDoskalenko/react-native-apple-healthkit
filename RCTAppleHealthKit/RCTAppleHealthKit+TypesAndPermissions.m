@@ -14,7 +14,7 @@
 #pragma mark - HealthKit Permissions
 
 - (NSDictionary *)readPermsDict {
-    NSDictionary *readPerms = @{
+    NSMutableDictionary<NSString*, id>* readPerms = [[NSMutableDictionary alloc] initWithDictionary:@{
         // Characteristic Identifiers
         @"DateOfBirth" : [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierDateOfBirth],
         @"BiologicalSex" : [HKObjectType characteristicTypeForIdentifier:HKCharacteristicTypeIdentifierBiologicalSex],
@@ -34,7 +34,6 @@
         @"ActiveEnergyBurned" : [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned],
         @"FlightsClimbed" : [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierFlightsClimbed],
         @"NikeFuel" : [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierNikeFuel],
-        @"AppleExerciseTime" : (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_9_3) ? [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierAppleExerciseTime] : NULL,
         // Nutrition Identifiers
         @"DietaryEnergy" : [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed],
         // Vital Signs Identifiers
@@ -46,8 +45,19 @@
         // Results Identifiers
         @"BloodGlucose" : [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierBloodGlucose],
         // Sleep
-        @"SleepAnalysis" : [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis],
-    };
+        @"SleepAnalysis" : [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis]
+    }];
+
+
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_9_3) {
+        [readPerms setObject:[HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierAppleExerciseTime] forKey:@"AppleExerciseTime"];
+    }
+
+    if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_9_x_Max) {
+        [readPerms setObject:[HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierMindfulSession] forKey:@"MindfulMinutes"];
+    }
+
+
     return readPerms;
 }
 

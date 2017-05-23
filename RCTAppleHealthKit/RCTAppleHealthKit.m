@@ -14,7 +14,7 @@
 #import "RCTAppleHealthKit+Methods_Characteristic.h"
 #import "RCTAppleHealthKit+Methods_Vitals.h"
 #import "RCTAppleHealthKit+Methods_Results.h"
-#import "RCTAppleHealthKit+Methods_Sleep.h"
+#import "RCTAppleHealthKit+Methods_Other.h"
 
 #if __has_include(<React/RCTAssert.h>)
 #import <React/RCTBridgeModule.h>
@@ -171,7 +171,18 @@ RCT_EXPORT_METHOD(getBloodGlucoseSamples:(NSDictionary *)input callback:(RCTResp
 
 RCT_EXPORT_METHOD(getSleepSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
 {
-    [self sleep_getSleepSamples:input callback:callback];
+    [self other_getSleepSamples:input callback:callback];
+}
+
+RCT_EXPORT_METHOD(getMindfulMinutesSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
+{
+    [self other_getMindfulMinutesSamples:input callback:callback];
+}
+
+RCT_EXPORT_METHOD(isMindfulMinutesAvailable:(RCTResponseSenderBlock)callback)
+{
+    BOOL isAvailable = &HKCategoryTypeIdentifierMindfulSession != NULL;
+    callback(@[[NSNull null], @(isAvailable)]);
 }
 
 RCT_EXPORT_METHOD(getInfo:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback)
