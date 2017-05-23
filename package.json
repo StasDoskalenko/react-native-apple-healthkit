@@ -1,14 +1,14 @@
 {
   "name": "react-native-apple-healthkit-rn0.40",
   "version": "0.3.2",
-  "description": "A React Native bridge module for interacting with Apple HealthKit data",
+  "description": "A React Native bridge module for interacting with Apple HealthKit data, forked and working for RN 0.40+",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GregWilson/react-native-apple-healthkit.git"
+    "url": "git+https://github.com/ProvataHealth/react-native-apple-healthkit.git"
   },
   "keywords": [
     "Apple",
