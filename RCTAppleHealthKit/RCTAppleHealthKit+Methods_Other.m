@@ -2,9 +2,6 @@
 //  RCTAppleHealthKit+Methods_Sleep.m
 //  RCTAppleHealthKit
 //
-//  Created by Greg Wilson on 2016-11-06.
-//  Copyright © 2016 Greg Wilson. All rights reserved.
-//
 
 
 #import "RCTAppleHealthKit+Methods_Other.h"
@@ -23,11 +20,11 @@
         callback(@[RCTMakeError(@"startDate is required in options", nil, nil)]);
         return;
     }
-    
+
     NSPredicate *predicate = [RCTAppleHealthKit predicateForSamplesBetweenDates:startDate endDate:endDate];
     NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
-    
-    
+
+
     [self fetchCategorySamplesOfType:[HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis]
                            predicate:predicate
                                limit:limit
@@ -41,7 +38,7 @@
                                      return;
                                  }
                              }];
-    
+
 }
 
 - (void)other_getMindfulMinutesSamples:(NSDictionary *)input callback:(RCTResponseSenderBlock)callback
@@ -52,10 +49,10 @@
         callback(@[RCTMakeError(@"startDate is required in options", nil, nil)]);
         return;
     }
-    
+
     NSPredicate *predicate = [RCTAppleHealthKit predicateForSamplesBetweenDates:startDate endDate:endDate];
     NSUInteger limit = [RCTAppleHealthKit uintFromOptions:input key:@"limit" withDefault:HKObjectQueryNoLimit];
-    
+
     [self fetchCategorySamplesOfType:[HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierMindfulSession]
                            predicate:predicate
                                limit:limit
@@ -69,7 +66,7 @@
                                   return;
                               }
                           }];
-    
+
 }
 
 

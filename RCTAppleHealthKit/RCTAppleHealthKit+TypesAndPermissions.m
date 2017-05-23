@@ -47,17 +47,17 @@
         // Sleep
         @"SleepAnalysis" : [HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierSleepAnalysis]
     }];
-    
-    
+
+
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_9_3) {
         [readPerms setObject:[HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierAppleExerciseTime] forKey:@"AppleExerciseTime"];
     }
-    
+
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_9_x_Max) {
-        [readPerms setObject:[HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierMindfulSession] forKey:@"MindfulSession"];
+        [readPerms setObject:[HKObjectType categoryTypeForIdentifier:HKCategoryTypeIdentifierMindfulSession] forKey:@"MindfulMinutes"];
     }
-    
-    
+
+
     return readPerms;
 }
 
