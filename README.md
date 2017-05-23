@@ -43,6 +43,7 @@ A React Native bridge module for interacting with [Apple HealthKit] data, forked
       * [getRespiratoryRateSamples](#getrespiratoryratesamples)
       * [getBloodGlucoseSamples](#getbloodglucosesamples)
       * [getSleepSamples](#getsleepsamples)
+      * [getMindfulMinutesSamples](#getmindfulminutessamples)
   * [Examples](#examples)
 
 
@@ -941,6 +942,36 @@ AppleHealthKit.getSleepSamples(options, (err: Object, samples: Array<Object>) =>
 ```
 
 
+___
+
+#### **`getMindfulMinutesSamples`**
+Query for mindful minutes samples.  **IOS 10 and above only!**  Use
+`AppleHealthKit.isMindfulMinutesAvailable()` in order to check if it is supported.
+
+```javascript
+let options = {
+    startDate: (new Date(2016,10,1)).toISOString(),		// required
+	  endDate: (new Date()).toISOString(),				// optional; default now
+    limit:10,											// optional; default no limit
+};
+```
+
+The callback function will be called with a `samples` array containing objects
+with *startDate*, and *endDate* fields
+
+*example usage*
+```javascript
+AppleHealthKit.isMindfulMinutesAvailable((err: Object, available: bool) => {
+  if (available) {
+    AppleHealthKit.getMindfulMinutesSamples(options, (err: Object, samples: Array<Object>) => {
+    	if(this._handleHealthKitError(err, 'getMindfulMinutesSamples')){
+    		return;
+    	}
+    	// use samples ...
+    });
+  }
+}
+```
 
 ## Examples
 
