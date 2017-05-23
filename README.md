@@ -1,5 +1,5 @@
-# react-native-apple-healthkit
-A React Native bridge module for interacting with [Apple HealthKit] data.
+# react-native-apple-healthkit-rn0.40
+A React Native bridge module for interacting with [Apple HealthKit] data, forked from  GregWilson/react-native-apple-healthkit and made to work for RN 0.40+
 
 ![Alt text](https://devimages.apple.com.edgekey.net/assets/elements/icons/healthkit/healthkit-64x64.png "Apple HealthKit")
 
@@ -50,14 +50,14 @@ A React Native bridge module for interacting with [Apple HealthKit] data.
 
 ###  Installation
 
-Install the [react-native-apple-healthkit] package from npm:
+Install the [react-native-apple-healthkit-rn0.40] package from npm:
 
-`npm install react-native-apple-healthkit --save`
+`npm install react-native-apple-healthkit-rn0.40 --save`
 
 ##### Xcode
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-apple-healthkit` and add `RCTAppleHealthKit.xcodeproj`
+2. Go to `node_modules` ➜ `react-native-apple-healthkit-rn0.40` and add `RCTAppleHealthKit.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libRCTAppleHealthKit.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Click `RCTAppleHealthKit.xcodeproj` in the project navigator and go the `Build Settings` tab. Make sure 'All' is toggled on (instead of 'Basic'). In the `Search Paths` section, look for `Header Search Paths` and make sure it contains both `$(SRCROOT)/../../react-native/React` and `$(SRCROOT)/../../../React` - mark both as `recursive`.
 5. Enable HealthKit in your application's `Capabilities`
@@ -67,9 +67,9 @@ Install the [react-native-apple-healthkit] package from npm:
 
 ### Usage
 
-Just `require` the `react-native-apple-healthkit` module and you're ready to go!
+Just `require` the `react-native-apple-healthkit-rn0.40` module and you're ready to go!
 ```javascript
-var AppleHealthKit = require('react-native-apple-healthkit');
+var AppleHealthKit = require('react-native-apple-healthkit-rn0.40');
 
 ...
 
@@ -94,7 +94,7 @@ AppleHealthKit.initHealthKit(options: Object, (err: Object, res: Object) => {
 When the module has been successfully initialized you can read and write HealthKit data
 
 ```javascript
-var AppleHealthKit = require('react-native-apple-healthkit');
+var AppleHealthKit = require('react-native-apple-healthkit-rn0.40');
 var _ = require('lodash');
 
 ...
@@ -159,10 +159,10 @@ The available HealthKit permissions to use with `initHealthKit`
 |
 
 
-These permissions are exported as constants of the `react-native-apple-healthkit` module.
+These permissions are exported as constants of the `react-native-apple-healthkit-rn0.40` module.
 
 ```javascript
-import AppleHealthKit from 'react-native-apple-healthkit';
+import AppleHealthKit from 'react-native-apple-healthkit-rn0.40';
 
 ...
 
@@ -946,17 +946,17 @@ AppleHealthKit.getSleepSamples(options, (err: Object, samples: Array<Object>) =>
 
 #### StepsDemo
 
-[Steps Demo](https://github.com/GregWilson/react-native-apple-healthkit/tree/master/examples/StepsDemo)
+[Steps Demo](https://github.com/ProvataHealth/react-native-apple-healthkit-rn0.40/tree/master/examples/StepsDemo)
 
-![alt text](https://raw.githubusercontent.com/GregWilson/react-native-apple-healthkit/master/examples/images/steps_demo_screen.png "Steps Demo App Screenshot")
+![alt text](https://raw.githubusercontent.com/ProvataHealth/react-native-apple-healthkit-rn0.40/master/examples/images/steps_demo_screen.png "Steps Demo App Screenshot")
 
 #### BodyMeasurements
 
-[Body Measurements Demo](https://github.com/GregWilson/react-native-apple-healthkit/tree/master/examples/BodyMeasurements)
+[Body Measurements Demo](https://github.com/ProvataHealth/react-native-apple-healthkit-rn0.40/tree/master/examples/BodyMeasurements)
 
-![alt text](https://raw.githubusercontent.com/GregWilson/react-native-apple-healthkit/master/examples/images/body_measurements_demo_screen.png "Body Measurements Demo App Screenshot")
+![alt text](https://raw.githubusercontent.com/ProvataHealth/react-native-apple-healthkit-rn0.40/master/examples/images/body_measurements_demo_screen.png "Body Measurements Demo App Screenshot")
 
 
 [Apple HealthKit]: https://developer.apple.com/healthkit/
-[react-native-apple-healthkit]: https://www.npmjs.com/package/react-native-apple-healthkit
+[react-native-apple-healthkit-rn0.40]: https://www.npmjs.com/package/react-native-apple-healthkit-rn0.40
 [HealthKit SleepAnalysis]: https://developer.apple.com/reference/healthkit/hkcategoryvaluesleepanalysis?language=objc
